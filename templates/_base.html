@@ -6,10 +6,42 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>{% block title %}{% endblock %}</title>
+	{% block css %}
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	{% endblock %}
 	<link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-	{% block content %}
+	<div class="container">
+		{% if messages %}
+			{% for message in messages %}
+				{% if 'info' in message.tags %}
+					<div class="card-panel green lighten-2">
+						{{ message }}
+					</div>
+				{% endif %}
+			{% endfor %}
+		{% endif %}
+
+		{% block content %}
+		{% endblock %}
+	</div>
+
+	{% block javascript %}
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+		<script>
+		$(document).ready(function(){
+
+		// Initialize materialize data picker
+		$('.datepicker').datepicker({'format': 'yyyy-mm-dd'});
+		$('select').formSelect();
+
+		});
+		</script>
 	{% endblock %}
 </body>
 </html>
