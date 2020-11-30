@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     # Third party
     'django_extensions',
+    'materializecssform',
 
     # Project
     'allapps.preferences.apps.PreferencesConfig',
